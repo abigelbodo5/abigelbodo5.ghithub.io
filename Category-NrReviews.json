@@ -1,0 +1,47 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Number of Reviews by Category",
+    "subtitle": "Total Reviews per Category",
+    "fontSize": 14,
+    "subtitleFontSize": 12,
+    "color": "#000000",
+    "subtitleColor": "#000000"
+  },
+  "height": 500,
+  "width": 800,
+  "background": "#ffffff",
+  "view": {"fill": "#ffffff"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/abigelbodo5/abigelbodo5.ghithub.io/main/ecommerce_product_dataset.csv"
+  },
+  "transform": [
+    {
+      "groupby": ["Category"],
+      "aggregate": [{"op": "sum", "field": "NumReviews", "as": "TotalReviews"}]
+    }
+  ],
+  "mark": {"type": "bar", "color": "#f4134d", "tooltip": true},
+  "encoding": {
+    "x": {
+      "field": "Category",
+      "type": "nominal",
+      "sort": "-y",
+      "axis": {"title": "Category", "titleColor": "#122B39", "labelAngle": -45}
+    },
+    "y": {
+      "field": "TotalReviews",
+      "type": "quantitative",
+      "axis": {"title": "Total Reviews", "titleColor": "#122B39"}
+    },
+    "tooltip": [
+      {"field": "Category", "type": "nominal", "title": "Category"},
+      {
+        "field": "TotalReviews",
+        "type": "quantitative",
+        "title": "Total Reviews"
+      }
+    ]
+  },
+  "config": {}
+}

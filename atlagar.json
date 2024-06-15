@@ -1,0 +1,24 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Average Price by Category",
+  "data": {
+    "url": "https://raw.githubusercontent.com/abigelbodo5/abigelbodo5.ghithub.io/main/ecommerce_product_dataset.csv"
+  },
+  "transform": [
+    {
+      "groupby": ["Category"],
+      "aggregate": [{"op": "mean", "field": "Price", "as": "AveragePrice"}]
+    }
+  ],
+  "mark": "arc",
+  "encoding": {
+    "theta": {"field": "AveragePrice", "type": "quantitative"},
+    "color": {"field": "Category", "type": "nominal"},
+    "tooltip": [
+      {"field": "Category", "type": "nominal"},
+      {"field": "AveragePrice", "type": "quantitative"}
+    ]
+  },
+  "title": "Average Price by Category",
+  "config": {}
+}

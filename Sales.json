@@ -1,0 +1,25 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Sales over Time",
+  "width": 1000,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/abigelbodo5/abigelbodo5.ghithub.io/main/ecommerce_product_dataset.csv"
+  },
+  "mark": {"type": "bar", "tooltip": true},
+  "encoding": {
+    "x": {
+      "field": "DateAdded",
+      "type": "temporal",
+      "axis": {"title": "Date Added", "labelAngle": -45},
+      "timeUnit": "yearmonthdate"
+    },
+    "y": {"field": "Sales", "type": "quantitative", "axis": {"title": "Sales"}},
+    "tooltip": [
+      {"field": "DateAdded", "type": "temporal", "title": "Date Added"},
+      {"field": "Sales", "type": "quantitative", "title": "Sales"}
+    ]
+  },
+  "title": "Sales over Time",
+  "config": {}
+}

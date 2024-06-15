@@ -1,0 +1,40 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Average Rating by Category",
+  "data": {
+    "url": "https://raw.githubusercontent.com/abigelbodo5/abigelbodo5.ghithub.io/main/ecommerce_product_dataset.csv"
+  },
+  "transform": [
+    {
+      "groupby": ["Category"],
+      "aggregate": [{"op": "mean", "field": "Rating", "as": "AverageRating"}]
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "Category",
+      "type": "nominal",
+      "axis": {"title": "Category", "labelAngle": -45}
+    },
+    "y": {
+      "field": "AverageRating",
+      "type": "quantitative",
+      "axis": {"title": "Average Rating"}
+    },
+    "color": {
+      "condition": {"selection": "highlight", "value": "steelblue"},
+      "value": "lightgray"
+    }
+  },
+  "title": "Average Rating by Category",
+  "selection": {
+    "highlight": {
+      "type": "single",
+      "on": "mouseover",
+      "empty": "none",
+      "clear": "mouseout"
+    }
+  },
+  "config": {}
+}
